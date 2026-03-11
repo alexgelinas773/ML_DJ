@@ -4,11 +4,11 @@ AI/ML DJ for CSE 474
 
 **Advanced Machine Learning Models**
 We will leverage three distinct models to achieve professional-grade
-mixing:
+mixing:\n
 • HTS-AT: An audio transformer used to classify and quantify
-audio features for sound profiling.
+audio features for sound profiling.\n
 • K-Means Clustering: Used to group songs with compatible
-"vibes" and energy levels.
+"vibes" and energy levels.\n
 • Meta AudioCraft: An open source generative model used to
 synthesize the actual audio transitions between songs.
 
