@@ -36,3 +36,13 @@ We will utilize Google Colab with GPU acceleration (T4/A100) to
 train our Transformer and run the generative audio models. We
 will also use a dedicated database to store the pre-computed sound
 profiles.
+
+@inproceedings{fma_dataset,
+  title = {{FMA}: A Dataset for Music Analysis},
+  author = {Defferrard, Micha\"el and Benzi, Kirell and Vandergheynst, Pierre and Bresson, Xavier},
+  booktitle = {18th International Society for Music Information Retrieval Conference (ISMIR)},
+  year = {2017},
+  archiveprefix = {arXiv},
+  eprint = {1612.01840},
+  url = {https://arxiv.org/abs/1612.01840},
+}
