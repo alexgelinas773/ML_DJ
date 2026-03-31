@@ -45,7 +45,6 @@ def extract_features(audio_path, start, end):
 
 def build_transition_features(df):
     transitions = []
-
     for i in range(len(df)-1):
         a = df.iloc[i]
         b = df.iloc[i+1]
