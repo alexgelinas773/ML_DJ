@@ -6,15 +6,16 @@ import requests
 
 #dataset from www.kaggle.com/datasets/solomonameh/spotify-music-dataset?resource=download
 #popular_songs = pd.read_csv("Songs/high_popularity_spotify_data.csv")
+#skrillex 2015 set from https://soundcloud.com/umfmusic-1/jack-u-ultra-music-festival-2015
+#van Buren 2026 set from
 
-def skrillex2015():
-    #skrillex set from https://soundcloud.com/umfmusic-1/jack-u-ultra-music-festival-2015
-    with open("DJ_Sets/skrillex2015", "r") as file:
+def getTimestaps(filename):
+    with open(filename, "r") as file:
         next(file)
         next(file)
         times = []
         for line in file:
-            time_obj = datetime.datetime.strptime(line.strip().strip('[').strip(']'), "%M:%S")
+            time_obj = datetime.datetime.strptime(line.strip().strip('[').strip(']'), "%H:%M:%S")
             total_seconds = time_obj.minute * 60 + time_obj.second
             times.append(total_seconds)
     return times
@@ -68,14 +69,14 @@ def build_transition_features(df):
 
 
 if __name__ == '__main__':
-    timestamps = skrillex2015()
+    timestamps = getTimestaps("DataInputs/vanBuren")
     df_tracks = pd.DataFrame({
         "track_id": range(len(timestamps) - 1),
         "start": timestamps[:-1],
         "end": timestamps[1:]
     })
 
-    audio_path = "DJ_Sets/skrillex2015audio.mp3"
+    audio_path = "DataInputs/A_State_of_Trance.mp3"
 
     feature_rows = []
     for _, row in df_tracks.iterrows():
@@ -86,5 +87,5 @@ if __name__ == '__main__':
     df_features = pd.DataFrame(feature_rows)
     df_transitions = build_transition_features(df_features)
 
-    df_features.to_csv("DJ_Sets/skrillex2015_features.csv")
-    df_transitions.to_csv("DJ_Sets/skrillex2015_transitions.csv")
+    df_features.to_csv("Datasets/stateOfTrance2026_features.csv")
+    df_transitions.to_csv("Datasets/stateOfTrance2026_transitions.csv")
