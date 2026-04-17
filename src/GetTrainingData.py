@@ -67,16 +67,16 @@ def build_transition_features(df):
 
     return pd.DataFrame(transitions)
 
+def main(track_stimestamp_name, audio_file_name):
+    track_timestamp_file = f"DataInputs/{track_stimestamp_name}"
+    audio_path = f"DataInputs/{audio_file_name}.mp3"
 
-if __name__ == '__main__':
-    timestamps = getTimestaps("DataInputs/dimitri")
+    timestamps = getTimestaps(track_timestamp_file)
     df_tracks = pd.DataFrame({
         "track_id": range(len(timestamps) - 1),
         "start": timestamps[:-1],
         "end": timestamps[1:]
     })
-
-    audio_path = "DataInputs/Smash_The_House_Radio_ep_672_KLICKAUD.mp3"
 
     feature_rows = []
     for _, row in df_tracks.iterrows():
@@ -87,5 +87,14 @@ if __name__ == '__main__':
     df_features = pd.DataFrame(feature_rows)
     df_transitions = build_transition_features(df_features)
 
-    df_features.to_csv("Datasets/dimitri_features.csv")
-    df_transitions.to_csv("Datasets/dimitri_transitions.csv")
+    df_features.to_csv(f"Datasets/{audio_file_name}_features.csv")
+    df_transitions.to_csv("Datasets/{audio_file_name}_transitions.csv")
+
+
+if __name__ == '__main__':
+    # Put song and transition timestamp txt in /DataInputs
+    # Don't include /DataInputs/ only the file name without .txt/.mp3/.wav or wtv
+    track_timestamp_list = "dimtri" # don't include txt
+    audio_file_name = "xxx"# don't include mp3
+
+    main(track_timestamp_list, audio_file_name)
