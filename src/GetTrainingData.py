@@ -88,13 +88,13 @@ def main(track_stimestamp_name, audio_file_name):
     df_transitions = build_transition_features(df_features)
 
     df_features.to_csv(f"Datasets/{audio_file_name}_features.csv")
-    df_transitions.to_csv("Datasets/{audio_file_name}_transitions.csv")
+    df_transitions.to_csv(f"Datasets/{audio_file_name}_transitions.csv")
 
 
 if __name__ == '__main__':
     # Put song and transition timestamp txt in /DataInputs
     # Don't include /DataInputs/ only the file name without .txt/.mp3/.wav or wtv
-    track_timestamp_list = "dimtri" # don't include txt
-    audio_file_name = "xxx"# don't include mp3
+    track_timestamp_list = "idk" # don't include txt
+    audio_file_name = "house"# don't include mp3
 
     main(track_timestamp_list, audio_file_name)
