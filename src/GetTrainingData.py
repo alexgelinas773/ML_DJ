@@ -69,14 +69,14 @@ def build_transition_features(df):
 
 
 if __name__ == '__main__':
-    timestamps = getTimestaps("DataInputs/vanBuren")
+    timestamps = getTimestaps("DataInputs/dimitri")
     df_tracks = pd.DataFrame({
         "track_id": range(len(timestamps) - 1),
         "start": timestamps[:-1],
         "end": timestamps[1:]
     })
 
-    audio_path = "DataInputs/A_State_of_Trance.mp3"
+    audio_path = "DataInputs/Smash_The_House_Radio_ep_672_KLICKAUD.mp3"
 
     feature_rows = []
     for _, row in df_tracks.iterrows():
@@ -87,5 +87,5 @@ if __name__ == '__main__':
     df_features = pd.DataFrame(feature_rows)
     df_transitions = build_transition_features(df_features)
 
-    df_features.to_csv("Datasets/stateOfTrance2026_features.csv")
-    df_transitions.to_csv("Datasets/stateOfTrance2026_transitions.csv")
+    df_features.to_csv("Datasets/dimitri_features.csv")
+    df_transitions.to_csv("Datasets/dimitri_transitions.csv")
