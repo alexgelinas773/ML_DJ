@@ -7,7 +7,8 @@ import requests
 #dataset from www.kaggle.com/datasets/solomonameh/spotify-music-dataset?resource=download
 #popular_songs = pd.read_csv("Songs/high_popularity_spotify_data.csv")
 #skrillex 2015 set from https://soundcloud.com/umfmusic-1/jack-u-ultra-music-festival-2015
-#van Buren 2026 set from
+#van Buren 2026 set from https://www.youtube.com/watch?v=1wzzDJtYNFI
+#garrixThailand2026 from https://soundcloud.com/tech-noise-1456671696/martin-garrix-live-siam?utm_source=clipboard&utm_campaign=wtshare&utm_medium=widget&utm_content=https%253A%252F%252Fsoundcloud.com%252Ftech-noise-1456671696%252Fmartin-garrix-live-siam
 
 def getTimestaps(filename):
     with open(filename, "r") as file:
@@ -67,16 +68,16 @@ def build_transition_features(df):
 
     return pd.DataFrame(transitions)
 
+def main(track_stimestamp_name, audio_file_name):
+    track_timestamp_file = f"DataInputs/{track_stimestamp_name}"
+    audio_path = f"DataInputs/{audio_file_name}.mp3"
 
-if __name__ == '__main__':
-    timestamps = getTimestaps("DataInputs/vanBuren")
+    timestamps = getTimestaps(track_timestamp_file)
     df_tracks = pd.DataFrame({
         "track_id": range(len(timestamps) - 1),
         "start": timestamps[:-1],
         "end": timestamps[1:]
     })
-
-    audio_path = "DataInputs/A_State_of_Trance.mp3"
 
     feature_rows = []
     for _, row in df_tracks.iterrows():
@@ -87,5 +88,14 @@ if __name__ == '__main__':
     df_features = pd.DataFrame(feature_rows)
     df_transitions = build_transition_features(df_features)
 
-    df_features.to_csv("Datasets/stateOfTrance2026_features.csv")
-    df_transitions.to_csv("Datasets/stateOfTrance2026_transitions.csv")
+    df_features.to_csv(f"Datasets/{audio_file_name}_features.csv")
+    df_transitions.to_csv(f"Datasets/{audio_file_name}_transitions.csv")
+
+
+if __name__ == '__main__':
+    # Put song and transition timestamp txt in /DataInputs
+    # Don't include /DataInputs/ only the file name without .txt/.mp3/.wav or wtv
+    track_timestamp_list = "garrixThailand2026" # don't include txt
+    audio_file_name = "garrixThailand2026"# don't include mp3
+
+    main(track_timestamp_list, audio_file_name)
