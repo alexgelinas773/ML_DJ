@@ -73,6 +73,7 @@ def main(track_stimestamp_name, audio_file_name):
     audio_path = f"DataInputs/{audio_file_name}.mp3"
 
     timestamps = getTimestaps(track_timestamp_file)
+    #print(timestamps)
     df_tracks = pd.DataFrame({
         "track_id": range(len(timestamps) - 1),
         "start": timestamps[:-1],
@@ -91,11 +92,38 @@ def main(track_stimestamp_name, audio_file_name):
     df_features.to_csv(f"Datasets/{audio_file_name}_features.csv")
     df_transitions.to_csv(f"Datasets/{audio_file_name}_transitions.csv")
 
+def bad_transition(timestamps, audio_file_name):
+    audio_path = f"DataInputs/{audio_file_name}.mp3"
+
+    # If only [start, end] is given, split at midpoint to get 2 segments
+    if len(timestamps) == 2:
+        mid = (timestamps[0] + timestamps[1]) / 2
+        timestamps = [timestamps[0], mid, timestamps[1]]
+
+    df_tracks = pd.DataFrame({
+        "track_id": range(len(timestamps) - 1),
+        "start": timestamps[:-1],
+        "end": timestamps[1:]
+    })
+
+    feature_rows = []
+    for _, row in df_tracks.iterrows():
+        feats = extract_features(audio_path, row.start, row.end)
+        feats["track_id"] = row.track_id
+        feature_rows.append(feats)
+
+    df_features = pd.DataFrame(feature_rows)
+    df_transitions = build_transition_features(df_features)
+
+    df_features.to_csv(f"Bad/{audio_file_name}_features.csv")
+    df_transitions.to_csv(f"Bad/{audio_file_name}_transitions.csv")
 
 if __name__ == '__main__':
     # Put song and transition timestamp txt in /DataInputs
     # Don't include /DataInputs/ only the file name without .txt/.mp3/.wav or wtv
+
     track_timestamp_list = "garrixThailand2026" # don't include txt
     audio_file_name = "garrixThailand2026"# don't include mp3
 
-    main(track_timestamp_list, audio_file_name)
+    #main(track_timestamp_list, audio_file_name)
+    bad_transition([220,300], "countryPopMix")
