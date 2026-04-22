@@ -69,7 +69,7 @@ def build_transition_features(df):
     return pd.DataFrame(transitions)
 
 def main(track_stimestamp_name, audio_file_name):
-    track_timestamp_file = f"DataInputs/{track_stimestamp_name}"
+    track_timestamp_file = f"DataInputs/{track_stimestamp_name}.txt"
     audio_path = f"DataInputs/{audio_file_name}.mp3"
 
     timestamps = getTimestaps(track_timestamp_file)
@@ -122,8 +122,8 @@ if __name__ == '__main__':
     # Put song and transition timestamp txt in /DataInputs
     # Don't include /DataInputs/ only the file name without .txt/.mp3/.wav or wtv
 
-    track_timestamp_list = "garrixThailand2026" # don't include txt
-    audio_file_name = "garrixThailand2026"# don't include mp3
+    track_timestamp_list = "cooperation.txt" # don't include txt
+    audio_file_name = "Cooperation_Groups_353_KLICKAUD"# don't include mp3
 
-    #main(track_timestamp_list, audio_file_name)
-    bad_transition([220,300], "countryPopMix")
+    main(track_timestamp_list, audio_file_name)
+    # bad_transition([220,300], "countryPopMix")
