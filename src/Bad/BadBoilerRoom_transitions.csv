@@ -1,0 +1,2 @@
+,from_track,to_track,delta_tempo,delta_rms,delta_centroid,delta_flux,delta_mfcc_0,delta_mfcc_1,delta_mfcc_2,delta_mfcc_3,delta_mfcc_4,delta_mfcc_5,delta_mfcc_6,delta_mfcc_7,delta_mfcc_8,delta_mfcc_9,delta_mfcc_10,delta_mfcc_11,delta_mfcc_12
+0,0,1,43.06640625,0.020431258,-287.43211980245724,0.3874383,-24.743935,6.8397064,7.495985,3.8361635,10.524556,6.155543,5.068829,8.924624,7.875657,6.720059,3.2882123,2.9312382,3.4001367
