@@ -122,8 +122,8 @@ if __name__ == '__main__':
     # Put song and transition timestamp txt in /DataInputs
     # Don't include /DataInputs/ only the file name without .txt/.mp3/.wav or wtv
 
-    track_timestamp_list = "daftPunk" # don't include txt
-    audio_file_name = "daftPunk"# don't include mp3
+    track_timestamp_list = "fredAgain" # don't include txt
+    audio_file_name = "fredAgain"# don't include mp3
 
     main(track_timestamp_list, audio_file_name)
     # bad_transition([220,300], "countryPopMix")
