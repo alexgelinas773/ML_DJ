@@ -16,6 +16,7 @@ Automated analysis and evaluation of DJ set transitions using audio feature extr
 ├── audio/                      # Audio files (.mp3) from FreeMusicArchive to generate mixes
 │
 ├── DataAnalysis.ipynb          # Initial research on song data vs danceability scores
+├── DEMO_TRANSITION.wav         # Sample transition created by our model using Librosa and soundfile
 ├── dj.ipynb                    # ML Model. Uses extracted data, trains model, and generates mixes
 ├── GetTrainingData.py          # Script to get positive training data, Librosa ran to extract features
 │
@@ -42,7 +43,7 @@ Automated analysis and evaluation of DJ set transitions using audio feature extr
 2. **Install dependencies:**
 
    ```bash
-   pip install numpy pandas librosa matplotlib jupyter
+   pip install numpy pandas librosa matplotlib jupyter soundfile
    ```
 
 3. **Launch Jupyter and explore:**
