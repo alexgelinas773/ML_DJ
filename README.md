@@ -1,48 +1,56 @@
-# MLDJ
+# README: Automating the DJ Experience
 
-AI/ML DJ for CSE 474
+Authors: Alexandra Gelinas, Sammy Odeh, Jaidin Rosario
 
+# TLDR
 
-**Advanced Machine Learning Models**
-We will leverage three distinct models to achieve professional-grade
-mixing:
+Automated analysis and evaluation of DJ set transitions using audio feature extraction and machine learning (neural network). Our project trains a ML Model using features like MFCCs, RMS energy, and spectral flux from live DJ Sets extracted from 1001Tracklists and MixesDB. This project utilizes libraries mentioned throughout the ReadMe in order to create a project purely for educational purposes for our course CSE 474: Intro to Machine Learning. Through this project, we were able to apply concepts learned as class such as what supervised learning is, neural networks, vector projection, etc.
 
-• HTS-AT: An audio transformer used to classify and quantify
-audio features for sound profiling.
+## Project Structure
 
-• K-Means Clustering: Used to group songs with compatible
-"vibes" and energy levels.
+```
+.
+├── Bad/                        # Examples of poorly executed transitions
+├── DataInputs/                 # .txt files of timestamps and .mp3 audio files of DJ sets
+├── Datasets/                   # Datasets containing extracted feature and transition data
+├── audio/                      # Audio files (.mp3) from FreeMusicArchive to generate mixes
+│
+├── DataAnalysis.ipynb          # Initial research on song data vs danceability scores
+├── dj.ipynb                    # ML Model. Uses extracted data, trains model, and generates mixes
+├── GetTrainingData.py          # Script to get positive training data, Librosa ran to extract features
+│
+├── high_popularity_spotify_data.csv   # Spotify dataset from Kaggle
+├── phrase_ends.npy             # NumPy array of detected phrase end timestamps
+├── phrase_features.npy         # NumPy array of extracted features per phrase
+├── phrase_files.npy            # NumPy array mapping phrases to source audio files
+├── phrase_starts.npy           # NumPy array of detected phrase start timestamps
+├── skrillex2015                # Reference DJ set (Skrillex 2015 mix) - First one we extracted!
+│
+├── .gitignore
+└── README.md                    # you are here :)
+```
 
-• Meta AudioCraft: An open source generative model used to
-synthesize the actual audio transitions between songs.
+## Getting Started
 
+1. **Clone the repository:**
 
-**Dataset**
-We will utilize human-mixed DJ sets from public sources like 1001Track-
-lists and the Free Music Archive (FMA) for supervised training.
+   ```bash
+   git clone <repo-url>
+   cd <repo-name>
+   ```
 
+2. **Install dependencies:**
 
-**Evaluation**
-Quantitative: We will evaluate the clustering accuracy using the
-Calinski-Harabasz score and measure the smoothness of transitions
-by calculating the continuity of the energy curve’s derivative.
-Qualitative: We expect to produce spectrogram visualizations show-
-ing seamless track layering and energy alignment plots that demon-
-strate a lack of jarring volume shifts.
+   ```bash
+   pip install numpy pandas librosa matplotlib jupyter
+   ```
 
+3. **Launch Jupyter and explore:**
 
-**Computational Resources**
-We will utilize Google Colab with GPU acceleration (T4/A100) to
-train our Transformer and run the generative audio models. We
-will also use a dedicated database to store the pre-computed sound
-profiles.
+   ```bash
+   jupyter notebook
+   ```
 
-@inproceedings{fma_dataset,
-  title = {{FMA}: A Dataset for Music Analysis},
-  author = {Defferrard, Micha\"el and Benzi, Kirell and Vandergheynst, Pierre and Bresson, Xavier},
-  booktitle = {18th International Society for Music Information Retrieval Conference (ISMIR)},
-  year = {2017},
-  archiveprefix = {arXiv},
-  eprint = {1612.01840},
-  url = {https://arxiv.org/abs/1612.01840},
-}
+   Run `dj.ipynb` for transition analysis and to generate mixes!
+
+   P.S. We wanted to explore musical data because we all love music and are interested in creative computional work.
